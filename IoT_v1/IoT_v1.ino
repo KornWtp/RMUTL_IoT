@@ -9,10 +9,10 @@
 
 
 #include <Ticker.h>
-#include <ESP8266WiFi.h>          
+#include <ESP8266WiFi.h>
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
-#include <WiFiManager.h>         
+#include <WiFiManager.h>
 #include <ESP8266HTTPClient.h>
 
 Ticker secondTick;
@@ -22,7 +22,7 @@ Ticker secondTick;
 volatile int watchdogCount = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("Starting");
   secondTick.attach(1, watchdog);
 
@@ -42,7 +42,7 @@ void loop() {
 
   HTTPClient http;
   int temp = random(25, 35);
-  String url = "http://192.168.43.183/getdata.php?motion_sensor=" + String(temp);
+  String url = "http://192.168.43.183/getdata.php?temp=" + String(temp);
   Serial.println(url);
   http.begin(url); //HTTP
   int httpCode = http.GET();
@@ -67,10 +67,10 @@ void loop() {
 
 void watchdog() {
   watchdogCount++;
-  if ( watchdogCount == 5 ) {
+  if ( watchdogCount == 10 ) {
     // Only print to serial when debugging
-    (debug) && Serial.println("The dog bites!");
-    ESP.reset();
+    Serial.println("The dog bites!");
+//    ESP.reset();
   }
 }
 

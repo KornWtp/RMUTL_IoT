@@ -1,13 +1,14 @@
 <?php session_start(); ?>
 <?php include("condb.php"); ?>
 <?php
-    $motion = $GET['motion_sensor'];
-    $turbidity = $GET['turbidity_sensor'];
-    $vibration = $GET['vibration_sensor'];
-    $ldr = $GET['ldr_sensor'];
+    $turbidity= $_GET['turbidity'];
+    $vibration = $_GET['vibration'];
+    $ldr = $_GET['ldr_sensor'];
+    $voltage = $_GET['voltage'];
 
-    $sql = "INSERT INTO iot( `motion_sensor`, `turbidity_sensor`, `vibration_sensor`, `ldr_sensor`) VALUES ($motion, $turbidity, $vibration, $ldr)";
+    $sql = "INSERT INTO iot( `turbidity`, `vibration`, `ldr_sensor`, `voltage`) VALUES ('$turbidity', '$vibration', '$ldr, '$voltage')";
     $sql_query($conn, $sql);
+    
     if($sql_query) {
         echo "complete";
     } else {
