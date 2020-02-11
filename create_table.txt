@@ -1,0 +1,9 @@
+
+CREATE TABLE IF NOT EXISTS `iot` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`turbidity` float (10) NOT NULL,
+ `vibration` float (10) NOT NULL,
+ `ldr_sensor` float (10) NOT NULL,
+ `voltage` float (10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
